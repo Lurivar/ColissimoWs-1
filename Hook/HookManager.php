@@ -12,10 +12,10 @@
  * Created by Franck Allimant, CQFDev <franck@cqfdev.fr>
  * Date: 17/08/2019 14:34
  */
-namespace ColissimoWs\Hook;
+namespace ColissimoHomeDelivery\Hook;
 
-use ColissimoWs\ColissimoWs;
-use ColissimoWs\Model\ColissimowsLabelQuery;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
+use ColissimoHomeDelivery\Model\ColissimowsLabelQuery;
 use Thelia\Core\Event\Hook\HookRenderBlockEvent;
 use Thelia\Core\Event\Hook\HookRenderEvent;
 use Thelia\Core\Hook\BaseHook;
@@ -29,7 +29,7 @@ class HookManager extends BaseHook
     {
         $vars = [ ];
 
-        if (null !== $params = ModuleConfigQuery::create()->findByModuleId(ColissimoWs::getModuleId())) {
+        if (null !== $params = ModuleConfigQuery::create()->findByModuleId(ColissimoHomeDelivery::getModuleId())) {
 
             /** @var ModuleConfig $param */
             foreach ($params as $param) {
@@ -39,7 +39,7 @@ class HookManager extends BaseHook
 
         $event->add(
             $this->render(
-                'colissimows/module_configuration.html',
+                'module_configuration.html',
                 $vars
             )
         );
@@ -47,7 +47,7 @@ class HookManager extends BaseHook
 
     public function onModuleConfigJs(HookRenderEvent $event)
     {
-        $event->add($this->render('colissimows/module-config-js.html'));
+        $event->add($this->render('module-config-js.html'));
     }
 
 }

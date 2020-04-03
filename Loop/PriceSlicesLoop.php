@@ -1,10 +1,10 @@
 <?php
 
 
-namespace ColissimoWs\Loop;
+namespace ColissimoHomeDelivery\Loop;
 
 
-use ColissimoWs\Model\ColissimowsPriceSlicesQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlicesQuery;
 use Thelia\Core\Template\Element\BaseLoop;
 use Thelia\Core\Template\Element\LoopResult;
 use Thelia\Core\Template\Element\LoopResultRow;
@@ -29,7 +29,7 @@ class PriceSlicesLoop extends BaseLoop implements PropelSearchLoopInterface
     {
         $areaId = $this->getAreaId();
 
-        $areaPrices = ColissimowsPriceSlicesQuery::create()
+        $areaPrices = ColissimoHomeDeliveryPriceSlicesQuery::create()
             ->filterByAreaId($areaId)
             ->orderByMaxWeight()
             ->orderByMaxPrice()
@@ -40,7 +40,7 @@ class PriceSlicesLoop extends BaseLoop implements PropelSearchLoopInterface
 
     public function parseResults(LoopResult $loopResult)
     {
-        /** @var \ColissimoWs\Model\ColissimoWsPriceSlices $priceSlice */
+        /** @var \ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlices $priceSlice */
         foreach ($loopResult->getResultDataCollection() as $priceSlice) {
             $loopResultRow = new LoopResultRow($priceSlice);
             $loopResultRow

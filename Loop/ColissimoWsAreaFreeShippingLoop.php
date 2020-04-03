@@ -1,11 +1,11 @@
 <?php
 
 
-namespace ColissimoWs\Loop;
+namespace ColissimoHomeDelivery\Loop;
 
 
-use ColissimoWs\Model\ColissimowsAreaFreeshipping;
-use ColissimoWs\Model\ColissimowsAreaFreeshippingQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryAreaFreeshipping;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryAreaFreeshippingQuery;
 use Thelia\Core\Template\Element\BaseLoop;
 use Thelia\Core\Template\Element\LoopResult;
 use Thelia\Core\Template\Element\LoopResultRow;
@@ -13,7 +13,7 @@ use Thelia\Core\Template\Element\PropelSearchLoopInterface;
 use Thelia\Core\Template\Loop\Argument\Argument;
 use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
 
-class ColissimoWsAreaFreeShippingLoop extends BaseLoop implements PropelSearchLoopInterface
+class ColissimoHomeDeliveryAreaFreeShippingLoop extends BaseLoop implements PropelSearchLoopInterface
 {
     /**
      * @return ArgumentCollection
@@ -29,7 +29,7 @@ class ColissimoWsAreaFreeShippingLoop extends BaseLoop implements PropelSearchLo
     {
         $areaId = $this->getAreaId();
 
-        $search = ColissimowsAreaFreeshippingQuery::create();
+        $search = ColissimoHomeDeliveryAreaFreeshippingQuery::create();
 
         if (null !== $areaId) {
             $search->filterByAreaId($areaId);
@@ -40,7 +40,7 @@ class ColissimoWsAreaFreeShippingLoop extends BaseLoop implements PropelSearchLo
 
     public function parseResults(LoopResult $loopResult)
     {
-        /** @var ColissimowsAreaFreeshipping $mode */
+        /** @var ColissimoHomeDeliveryAreaFreeshipping $mode */
         foreach ($loopResult->getResultDataCollection() as $mode) {
             $loopResultRow = new LoopResultRow($mode);
             $loopResultRow

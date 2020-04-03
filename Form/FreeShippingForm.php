@@ -21,10 +21,10 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-namespace ColissimoWs\Form;
+namespace ColissimoHomeDelivery\Form;
 
-use ColissimoWs\ColissimoWs;
-use ColissimoWs\Model\Base\ColissimowsFreeshippingQuery;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
+use ColissimoHomeDelivery\Model\Base\ColissimoHomeDeliveryFreeshippingQuery;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -60,7 +60,7 @@ class FreeShippingForm extends BaseForm
                 'freeshipping',
                 CheckboxType::class,
                 [
-                    'label'     => Translator::getInstance()->trans("Activate free shipping: ", [], ColissimoWs::DOMAIN_NAME)
+                    'label'     => Translator::getInstance()->trans("Activate free shipping: ", [], ColissimoHomeDelivery::DOMAIN_NAME)
                 ]
             )
             ->add(
@@ -68,8 +68,8 @@ class FreeShippingForm extends BaseForm
                 NumberType::class,
                 [
                     'required'  => false,
-                    'label'     => Translator::getInstance()->trans("Free shipping from: ", [], ColissimoWs::DOMAIN_NAME),
-                    'data'      => ColissimowsFreeshippingQuery::create()->findOneById(1)->getFreeshippingFrom(),
+                    'label'     => Translator::getInstance()->trans("Free shipping from: ", [], ColissimoHomeDelivery::DOMAIN_NAME),
+                    'data'      => ColissimoHomeDeliveryFreeshippingQuery::create()->findOneById(1)->getFreeshippingFrom(),
                     'scale'     => 2,
                 ]
             )
@@ -82,7 +82,7 @@ class FreeShippingForm extends BaseForm
      */
     public function getName()
     {
-        return "colissimowsfreeshipping";
+        return "colissimohomedeliveryfreeshipping";
     }
 
 }

@@ -12,9 +12,9 @@
  * Created by Franck Allimant, CQFDev <franck@cqfdev.fr>
  * Date: 17/08/2019 12:26
  */
-namespace ColissimoWs\Controller;
+namespace ColissimoHomeDelivery\Controller;
 
-use ColissimoWs\ColissimoWs;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\AccessManager;
 use Thelia\Core\Security\Resource\AdminResources;
@@ -25,15 +25,15 @@ class ConfigurationController extends BaseAdminController
 {
     public function configure()
     {
-        if (null !== $response = $this->checkAuth(AdminResources::MODULE, ColissimoWs::DOMAIN_NAME, AccessManager::UPDATE)) {
+        if (null !== $response = $this->checkAuth(AdminResources::MODULE, ColissimoHomeDelivery::DOMAIN_NAME, AccessManager::UPDATE)) {
             return $response;
         }
 
-        $configurationForm = $this->createForm('colissimows_configuration_form');
+        $configurationForm = $this->createForm('colissimo.homedelivery.configuration.form');
 
         $message = false;
 
-        $url = '/admin/module/ColissimoWs';
+        $url = '/admin/module/ColissimoHomeDelivery';
 
         try {
             $form = $this->validateForm($configurationForm);
@@ -46,14 +46,14 @@ class ConfigurationController extends BaseAdminController
                     $value = implode(';', $value);
                 }
 
-                ColissimoWs::setConfigValue($name, $value);
+                ColissimoHomeDelivery::setConfigValue($name, $value);
             }
 
             // Log configuration modification
             $this->adminLogAppend(
-                "colissimoWs.configuration.message",
+                "colissimo.home.delivery.configuration.message",
                 AccessManager::UPDATE,
-                "ColissimoWs configuration updated"
+                "ColissimoHomeDelivery configuration updated"
             );
 
             // Redirect to the success URL,
@@ -68,7 +68,7 @@ class ConfigurationController extends BaseAdminController
 
         if ($message !== false) {
             $this->setupFormErrorContext(
-                $this->getTranslator()->trans("ColissimoWs configuration", [], ColissimoWs::DOMAIN_NAME),
+                $this->getTranslator()->trans("ColissimoHomeDelivery configuration", [], ColissimoHomeDelivery::DOMAIN_NAME),
                 $message,
                 $configurationForm,
                 $ex

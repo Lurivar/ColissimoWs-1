@@ -21,12 +21,12 @@
 /*                                                                                   */
 /*************************************************************************************/
 
-namespace ColissimoWs\Controller;
+namespace ColissimoHomeDelivery\Controller;
 
-use ColissimoWs\Form\FreeShippingForm;
-use ColissimoWs\Model\ColissimowsAreaFreeshippingQuery;
-use ColissimoWs\Model\ColissimowsFreeshipping;
-use ColissimoWs\Model\ColissimowsFreeshippingQuery;
+use ColissimoHomeDelivery\Form\FreeShippingForm;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryAreaFreeshippingQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshipping;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshippingQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Thelia\Controller\Admin\BaseAdminController;
 
@@ -40,7 +40,7 @@ class FreeShippingController extends BaseAdminController
     public function toggleFreeShippingActivation()
     {
         if (null !== $response = $this
-                ->checkAuth(array(AdminResources::MODULE), array('ColissimoWs'), AccessManager::UPDATE)) {
+                ->checkAuth(array(AdminResources::MODULE), $array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
             return $response;
         }
 
@@ -52,8 +52,8 @@ class FreeShippingController extends BaseAdminController
             $freeshipping = $vform->get('freeshipping')->getData();
             $freeshippingFrom = $vform->get('freeshipping_from')->getData();
 
-            if (null === $isFreeShippingActive = ColissimowsFreeshippingQuery::create()->findOneById(1)){
-                $isFreeShippingActive = new ColissimowsFreeshipping();
+            if (null === $isFreeShippingActive = ColissimoHomeDeliveryFreeshippingQuery::create()->findOneById(1)){
+                $isFreeShippingActive = new ColissimoHomeDeliveryFreeshipping();
             }
 
             $isFreeShippingActive
@@ -62,7 +62,7 @@ class FreeShippingController extends BaseAdminController
             ;
             $isFreeShippingActive->save();
 
-            $response = $this->generateRedirect(URL::getInstance()->absoluteUrl("/admin/module/ColissimoWs"));
+            $response = $this->generateRedirect(URL::getInstance()->absoluteUrl("/admin/module/ColissimoHomeDelivery"));
         } catch (\Exception $e) {
         }
         return $response;
@@ -74,38 +74,38 @@ class FreeShippingController extends BaseAdminController
     public function setAreaFreeShipping()
     {
         if (null !== $response = $this
-                ->checkAuth(array(AdminResources::MODULE), array('ColissimoWs'), AccessManager::UPDATE)) {
+                ->checkAuth(array(AdminResources::MODULE), $array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
             return $response;
         }
 
         try {
             $data = $this->getRequest()->request;
 
-            $colissimows_area_id = $data->get('area-id');
+            $colissimo_homedelivery_area_id = $data->get('area-id');
             $cartAmount = $data->get('cart-amount');
 
             if ($cartAmount < 0 || $cartAmount === '') {
                 $cartAmount = null;
             }
 
-            $areaQuery = AreaQuery::create()->findOneById($colissimows_area_id);
+            $areaQuery = AreaQuery::create()->findOneById($colissimo_homedelivery_area_id);
             if (null === $areaQuery) {
                 return null;
             }
 
-            $colissimowsAreaFreeshippingQuery = ColissimowsAreaFreeshippingQuery::create()
-                ->filterByAreaId($colissimows_area_id)
+            $colissimoHomeDeliveryAreaFreeshippingQuery = ColissimoHomeDeliveryAreaFreeshippingQuery::create()
+                ->filterByAreaId($colissimo_homedelivery_area_id)
                 ->findOneOrCreate();
 
-            $colissimowsAreaFreeshippingQuery
-                ->setAreaId($colissimows_area_id)
+            $colissimoHomeDeliveryAreaFreeshippingQuery
+                ->setAreaId($colissimo_homedelivery_area_id)
                 ->setCartAmount($cartAmount)
                 ->save();
 
         } catch (\Exception $e) {
         }
 
-        return $this->generateRedirect(URL::getInstance()->absoluteUrl('/admin/module/ColissimoWs'));
+        return $this->generateRedirect(URL::getInstance()->absoluteUrl('/admin/module/ColissimoHomeDelivery'));
     }
 
 }

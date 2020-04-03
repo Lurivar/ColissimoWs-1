@@ -1,13 +1,13 @@
 <?php
 
 
-namespace ColissimoWs\Controller;
+namespace ColissimoHomeDelivery\Controller;
 
 
 
-use ColissimoWs\ColissimoWs;
-use ColissimoWs\Model\ColissimowsPriceSlices;
-use ColissimoWs\Model\ColissimowsPriceSlicesQuery;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlices;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlicesQuery;
 use Propel\Runtime\Map\TableMap;
 use Thelia\Controller\Admin\BaseAdminController;
 use Thelia\Core\Security\AccessManager;
@@ -32,7 +32,7 @@ class PriceSliceController extends BaseAdminController
 
     public function savePriceSliceAction()
     {
-        $response = $this->checkAuth([], ['colissimows'], AccessManager::UPDATE);
+        $response = $this->checkAuth([], ['colissimohomedelivery'], AccessManager::UPDATE);
 
         if (null !== $response) {
             return $response;
@@ -53,9 +53,9 @@ class PriceSliceController extends BaseAdminController
             $requestData = $this->getRequest()->request;
 
             if (0 !== $id = (int)$requestData->get('id', 0)) {
-                $slice = ColissimowsPriceSlicesQuery::create()->findPk($id);
+                $slice = ColissimoHomeDeliveryPriceSlicesQuery::create()->findPk($id);
             } else {
-                $slice = new ColissimowsPriceSlices();
+                $slice = new ColissimoHomeDeliveryPriceSlices();
             }
 
 
@@ -65,7 +65,7 @@ class PriceSliceController extends BaseAdminController
                 $messages[] = $this->getTranslator()->trans(
                     'The area is not valid',
                     [],
-                    ColissimoWs::DOMAIN_NAME
+                    ColissimoHomeDelivery::DOMAIN_NAME
                 );
             }
 
@@ -76,7 +76,7 @@ class PriceSliceController extends BaseAdminController
                 $messages[] = $this->getTranslator()->trans(
                     'You must specify at least a price max or a weight max value.',
                     [],
-                    ColissimoWs::DOMAIN_NAME
+                    ColissimoHomeDelivery::DOMAIN_NAME
                 );
             } else {
                 if (!empty($requestPriceMax)) {
@@ -87,7 +87,7 @@ class PriceSliceController extends BaseAdminController
                         $messages[] = $this->getTranslator()->trans(
                             'The price max value is not valid',
                             [],
-                            ColissimoWs::DOMAIN_NAME
+                            ColissimoHomeDelivery::DOMAIN_NAME
                         );
                     }
                 } else {
@@ -102,7 +102,7 @@ class PriceSliceController extends BaseAdminController
                         $messages[] = $this->getTranslator()->trans(
                             'The weight max value is not valid',
                             [],
-                            ColissimoWs::DOMAIN_NAME
+                            ColissimoHomeDelivery::DOMAIN_NAME
                         );
                     }
                 } else {
@@ -119,7 +119,7 @@ class PriceSliceController extends BaseAdminController
                 $messages[] = $this->getTranslator()->trans(
                     'The price value is not valid',
                     [],
-                    ColissimoWs::DOMAIN_NAME
+                    ColissimoHomeDelivery::DOMAIN_NAME
                 );
             }
 
@@ -128,7 +128,7 @@ class PriceSliceController extends BaseAdminController
                 $messages[] = $this->getTranslator()->trans(
                     'Your slice has been saved',
                     [],
-                    ColissimoWs::DOMAIN_NAME
+                    ColissimoHomeDelivery::DOMAIN_NAME
                 );
 
                 $responseData['success'] = true;
@@ -145,7 +145,7 @@ class PriceSliceController extends BaseAdminController
 
     public function deletePriceSliceAction()
     {
-        $response = $this->checkAuth([], ['colissimows'], AccessManager::DELETE);
+        $response = $this->checkAuth([], ['colissimohomedelivery'], AccessManager::DELETE);
 
         if (null !== $response) {
             return $response;
@@ -165,14 +165,14 @@ class PriceSliceController extends BaseAdminController
             $requestData = $this->getRequest()->request;
 
             if (0 !== $id = (int)$requestData->get('id', 0)) {
-                $priceSlice = ColissimowsPriceSlicesQuery::create()->findPk($id);
+                $priceSlice = ColissimoHomeDeliveryPriceSlicesQuery::create()->findPk($id);
                 $priceSlice->delete();
                 $responseData['success'] = true;
             } else {
                 $responseData['message'] = $this->getTranslator()->trans(
                     'The slice has not been deleted',
                     [],
-                    ColissimoWs::DOMAIN_NAME
+                    ColissimoHomeDelivery::DOMAIN_NAME
                 );
             }
         } catch (\Exception $e) {

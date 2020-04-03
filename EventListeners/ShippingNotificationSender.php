@@ -12,9 +12,9 @@
  * Created by Franck Allimant, CQFDev <franck@cqfdev.fr>
  * Date: 04/09/2019 14:34
  */
-namespace ColissimoWs\EventListeners;
+namespace ColissimoHomeDelivery\EventListeners;
 
-use ColissimoWs\ColissimoWs;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Thelia\Action\BaseAction;
 use Thelia\Core\Event\Order\OrderEvent;
@@ -61,7 +61,7 @@ class ShippingNotificationSender extends BaseAction implements EventSubscriberIn
                 $customer = $order->getCustomer();
 
                 $this->mailer->sendEmailToCustomer(
-                    ColissimoWs::CONFIRMATION_MESSAGE_NAME,
+                    ColissimoHomeDelivery::CONFIRMATION_MESSAGE_NAME,
                     $order->getCustomer(),
                     [
                         'order_id' => $order->getId(),

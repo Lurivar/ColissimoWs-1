@@ -4,26 +4,26 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="colissimows.config" path="/admin/module/colissimows/configure">
-        <default key="_controller">ColissimoWs\Controller\ConfigurationController::configure</default>
+    <route id="colissimo.home.delivery.config" path="/admin/module/ColissimoHomeDelivery/configure">
+        <default key="_controller">ColissimoHomeDelivery\Controller\ConfigurationController::configure</default>
     </route>
 
     <!-- Price Slices -->
 
-    <route id="colissimows.toggle.freeshipping" path="/admin/module/colissimows/freeshipping" methods="post">
-        <default key="_controller">ColissimoWs\Controller\FreeShippingController::toggleFreeShippingActivation</default>
+    <route id="colissimo.home.delivery.toggle.freeshipping" path="/admin/module/ColissimoHomeDelivery/freeshipping" methods="post">
+        <default key="_controller">ColissimoHomeDelivery\Controller\FreeShippingController::toggleFreeShippingActivation</default>
     </route>
 
-    <route id="colissimows.edit.areafreeshipping" path="/admin/module/colissimows/area_freeshipping" methods="post">
-        <default key="_controller">ColissimoWs\Controller\FreeShippingController::setAreaFreeShipping</default>
+    <route id="colissimo.home.delivery.edit.areafreeshipping" path="/admin/module/ColissimoHomeDelivery/area_freeshipping" methods="post">
+        <default key="_controller">ColissimoHomeDelivery\Controller\FreeShippingController::setAreaFreeShipping</default>
     </route>
 
-    <route id="colissimows.add.price-slice" path="/admin/module/colissimows/price-slice/save" methods="post">
-        <default key="_controller">ColissimoWs\Controller\PriceSliceController::savePriceSliceAction</default>
+    <route id="colissimo.home.delivery.add.price-slice" path="/admin/module/ColissimoHomeDelivery/price-slice/save" methods="post">
+        <default key="_controller">ColissimoHomeDelivery\Controller\PriceSliceController::savePriceSliceAction</default>
     </route>
 
-    <route id="colissimows.update.price-slice" path="/admin/module/colissimows/price-slice/delete" methods="post">
-        <default key="_controller">ColissimoWs\Controller\PriceSliceController::deletePriceSliceAction</default>
+    <route id="colissimo.home.delivery.update.price-slice" path="/admin/module/ColissimoHomeDelivery/price-slice/delete" methods="post">
+        <default key="_controller">ColissimoHomeDelivery\Controller\PriceSliceController::deletePriceSliceAction</default>
     </route>
 
 </routes>

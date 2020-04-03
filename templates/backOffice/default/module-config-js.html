@@ -10,9 +10,9 @@
 <script>
 
     var config = {
-        'urlAdd': '{url path="/admin/module/colissimows/price-slice/save"}',
-        'urlDelete': '{url path="/admin/module/colissimows/price-slice/delete"}',
-        'urlSave': '{url path="/admin/module/colissimows/price-slice/save"}'
+        'urlAdd': '{url path="/admin/module/ColissimoHomeDelivery/price-slice/save"}',
+        'urlDelete': '{url path="/admin/module/ColissimoHomeDelivery/price-slice/delete"}',
+        'urlSave': '{url path="/admin/module/ColissimoHomeDelivery/price-slice/save"}'
     };
 
     $(document).ready(function() {
@@ -22,7 +22,7 @@
         var tpl = _.template($("#tpl-slice").html());
 
         var showMessage = function showMessage(message) {
-            $('#colissimows_dialog')
+            $('#colissimo_home_delivery_dialog')
                     .find('.modal-body')
                     .html(message)
                     .end()
@@ -126,9 +126,9 @@
 
         });
 
-        $(".freeshipping-activation-ColissimoWs").bootstrapSwitch();
+        $(".freeshipping-activation-ColissimoHomeDelivery").bootstrapSwitch();
 
-        $(".freeshipping-activation-ColissimoWs").on("switch-change", function(e, data){
+        $(".freeshipping-activation-ColissimoHomeDelivery").on("switch-change", function(e, data){
             var is_checked = data.value;
             var form = $("#freeshippingform");
             $('body').append('<div class="modal-backdrop fade in" id="loading-event"><div class="loading"></div></div>');

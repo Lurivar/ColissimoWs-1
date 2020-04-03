@@ -10,19 +10,18 @@
 /*      file that was distributed with this source code.                             */
 /*************************************************************************************/
 
-namespace ColissimoWs;
+namespace ColissimoHomeDelivery;
 
-use ColissimoWs\Model\ColissimowsAreaFreeshippingQuery;
-use ColissimoWs\Model\ColissimowsFreeshippingQuery;
-use ColissimoWs\Model\ColissimowsPriceSlices;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryAreaFreeshippingQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshippingQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlices;
 use PDO;
-use ColissimoWs\Model\ColissimowsPriceSlicesQuery;
+use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryPriceSlicesQuery;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Propel;
 use Symfony\Component\Finder\Finder;
 use Thelia\Install\Database;
-use Thelia\Model\ConfigQuery;
 use Thelia\Model\Country;
 use Thelia\Model\Message;
 use Thelia\Model\MessageQuery;
@@ -30,17 +29,17 @@ use Thelia\Model\ModuleQuery;
 use Thelia\Module\AbstractDeliveryModule;
 use Thelia\Module\Exception\DeliveryException;
 
-class ColissimoWs extends AbstractDeliveryModule
+class ColissimoHomeDelivery extends AbstractDeliveryModule
 {
     /** @var string */
-    const DOMAIN_NAME = 'colissimows';
+    const DOMAIN_NAME = 'colissimohomedelivery';
 
     // The shipping confirmation message identifier
-    const CONFIRMATION_MESSAGE_NAME = 'order_confirmation_colissimows';
+    const CONFIRMATION_MESSAGE_NAME = 'order_confirmation_colissimo_home_delivery';
 
     // Configuration parameters
-    const COLISSIMO_USERNAME = 'colissimo_username';
-    const COLISSIMO_PASSWORD = 'colissimo_password';
+    const COLISSIMO_USERNAME = 'colissimo_home_delivery_username';
+    const COLISSIMO_PASSWORD = 'colissimo_home_delivery_password';
     const AFFRANCHISSEMENT_ENDPOINT_URL = 'affranchissement_endpoint_url';
     const ACTIVATE_DETAILED_DEBUG = 'activate_detailed_debug';
 
@@ -52,16 +51,16 @@ class ColissimoWs extends AbstractDeliveryModule
     {
         // Create table if required.
         try {
-            ColissimowsPriceSlicesQuery::create()->findOne();
-            ColissimowsFreeshippingQuery::create()->findOne();
-            ColissimowsAreaFreeshippingQuery::create()->findOne();
+            ColissimoHomeDeliveryPriceSlicesQuery::create()->findOne();
+            ColissimoHomeDeliveryFreeshippingQuery::create()->findOne();
+            ColissimoHomeDeliveryAreaFreeshippingQuery::create()->findOne();
         } catch (\Exception $ex) {
             $database = new Database($con->getWrappedConnection());
             $database->insertSql(null, [__DIR__ . "/Config/thelia.sql"]);
         }
 
-        if (!ColissimowsFreeshippingQuery::create()->filterById(1)->findOne()) {
-            ColissimowsFreeshippingQuery::create()->filterById(1)->findOneOrCreate()->setActive(0)->save();
+        if (!ColissimoHomeDeliveryFreeshippingQuery::create()->filterById(1)->findOne()) {
+            ColissimoHomeDeliveryFreeshippingQuery::create()->filterById(1)->findOneOrCreate()->setActive(0)->save();
         }
 
         if (!self::getConfigValue(self::AFFRANCHISSEMENT_ENDPOINT_URL)) {
@@ -164,10 +163,10 @@ class ColissimoWs extends AbstractDeliveryModule
      */
     public static function getPostageAmount($areaId, $weight, $cartAmount = 0)
     {
-        $freeshippingFrom = ColissimowsFreeshippingQuery::create()->findOneById(1)->getFreeshippingFrom();
-        $areaFreeshipping = ColissimowsAreaFreeshippingQuery::create()->findOneByAreaId($areaId);
+        $freeshippingFrom = ColissimoHomeDeliveryFreeshippingQuery::create()->findOneById(1)->getFreeshippingFrom();
+        $areaFreeshipping = ColissimoHomeDeliveryAreaFreeshippingQuery::create()->findOneByAreaId($areaId);
 
-        $areaPrices = ColissimowsPriceSlicesQuery::create()
+        $areaPrices = ColissimoHomeDeliveryPriceSlicesQuery::create()
             ->filterByAreaId($areaId)
             ->filterByMaxWeight($weight, Criteria::GREATER_EQUAL)
             ->_or()
@@ -179,7 +178,7 @@ class ColissimoWs extends AbstractDeliveryModule
             ->orderByMaxPrice()
         ;
 
-        /** @var ColissimowsPriceSlices $firstPrice */
+        /** @var ColissimoHomeDeliveryPriceSlices $firstPrice */
         $firstPrice = $areaPrices->find()
             ->getFirst();
 
@@ -237,7 +236,7 @@ class ColissimoWs extends AbstractDeliveryModule
 
         $postage = 0;
 
-        $freeshippingIsActive = ColissimowsFreeshippingQuery::create()->findOneById(1)->getActive();
+        $freeshippingIsActive = ColissimoHomeDeliveryFreeshippingQuery::create()->findOneById(1)->getActive();
 
         if (false === $freeshippingIsActive){
             $cartWeight = $request->getSession()->getSessionCart($this->getDispatcher())->getWeight();
@@ -271,7 +270,7 @@ class ColissimoWs extends AbstractDeliveryModule
     {
         $areaId = $country->getAreaId();
 
-        $prices = ColissimowsPriceSlicesQuery::create()
+        $prices = ColissimoHomeDeliveryPriceSlicesQuery::create()
             ->filterByAreaId($areaId)
             ->findOne();
 
@@ -284,6 +283,6 @@ class ColissimoWs extends AbstractDeliveryModule
 
     public static function getModCode()
     {
-        return ModuleQuery::create()->findOneByCode("ColissimoWs")->getId();
+        return ModuleQuery::create()->findOneByCode('ColissimoHomeDelivery')->getId();
     }
 }

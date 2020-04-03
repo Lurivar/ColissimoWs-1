@@ -5,7 +5,7 @@ return array(
     'Activer les logs détaillés' => 'Activate detailed logs',
     'Colissimo password' => 'Colissimo password',
     'Colissimo username' => 'Colissimo username',
-    'ColissimoWs configuration' => 'ColissimoWs configuration',
+    'ColissimoHomeDelivery configuration' => 'ColissimoHomeDelivery configuration',
     'Endpoint du web service d\'affranchissement' => 'Endpoint',
     'Free shipping from: ' => 'Free shipping from: ',
     'Indiquez le endpoint de base à utiliser, par exemple https://domain.tld/transactionaldata/api/v1' => 'Write the base endpoint to use, e.g. : https://domain.tld/transactionaldata/api/v1',

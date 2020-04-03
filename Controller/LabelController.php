@@ -12,13 +12,13 @@
  * Created by Franck Allimant, CQFDev <franck@cqfdev.fr>
  * Date: 04/09/2019 21:51
  */
-namespace ColissimoWs\Controller;
+namespace ColissimoHomeDelivery\Controller;
 
 use ColissimoLabel\Model\ColissimoLabelQuery;
-use ColissimoWs\ColissimoWs;
-use ColissimoWs\Event\LabelEvent;
-use ColissimoWs\Model\ColissimowsLabel;
-use ColissimoWs\Model\ColissimowsLabelQuery;
+use ColissimoHomeDelivery\ColissimoHomeDelivery;
+use ColissimoHomeDelivery\Event\LabelEvent;
+use ColissimoHomeDelivery\Model\ColissimowsLabel;
+use ColissimoHomeDelivery\Model\ColissimowsLabelQuery;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Thelia\Controller\Admin\BaseAdminController;

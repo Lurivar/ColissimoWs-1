@@ -1,4 +1,4 @@
-# ColissimoWs Test
+# ColissimoHomeDelivery
 
 Adds a delivery system for Colissimo Domicile delivery, with or without signature. 
 
@@ -29,7 +29,7 @@ for a minimum price, minimum price by area, or for everyone.
 
 If your module declare one or more loop, describe them here like this :
 
-[colissimows.area.freeshipping]
+[colissimo.homedelivery.area.freeshipping]
 
 ### Input arguments
 
@@ -45,7 +45,7 @@ If your module declare one or more loop, describe them here like this :
 |$AREA_ID    | The area ID |
 |$CART_AMOUNT    | The cart amount necessary to benefit from free delivery |
 
-[colissimows.freeshipping]
+[colissimo.homedelivery.freeshipping]
 
 ### Input arguments
 
@@ -59,7 +59,7 @@ If your module declare one or more loop, describe them here like this :
 |---        |--- |
 |$FREESHIPPING_ACTIVE | (bool) Whether the global freeshipping is activated or not |
 
-[colissimows.price-slices]
+[colissimo.homedelivery.price-slices]
 
 ### Input arguments
 
