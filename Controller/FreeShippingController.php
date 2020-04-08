@@ -40,7 +40,7 @@ class FreeShippingController extends BaseAdminController
     public function toggleFreeShippingActivation()
     {
         if (null !== $response = $this
-                ->checkAuth(array(AdminResources::MODULE), $array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
+                ->checkAuth(array(AdminResources::MODULE), array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
             return $response;
         }
 
@@ -74,7 +74,7 @@ class FreeShippingController extends BaseAdminController
     public function setAreaFreeShipping()
     {
         if (null !== $response = $this
-                ->checkAuth(array(AdminResources::MODULE), $array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
+                ->checkAuth(array(AdminResources::MODULE), array('ColissimoHomeDelivery'), AccessManager::UPDATE)) {
             return $response;
         }
 

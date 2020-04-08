@@ -51,13 +51,13 @@ class ConfigurationController extends BaseAdminController
 
             // Log configuration modification
             $this->adminLogAppend(
-                "colissimo.home.delivery.configuration.message",
+                'colissimo.home.delivery.configuration.message',
                 AccessManager::UPDATE,
-                "ColissimoHomeDelivery configuration updated"
+                'ColissimoHomeDelivery configuration updated'
             );
 
             // Redirect to the success URL,
-            if (! $this->getRequest()->get('save_mode') == 'stay') {
+            if (! $this->getRequest()->get('save_mode') === 'stay') {
                 $url = '/admin/modules';
             }
         } catch (FormValidationException $ex) {
@@ -68,7 +68,7 @@ class ConfigurationController extends BaseAdminController
 
         if ($message !== false) {
             $this->setupFormErrorContext(
-                $this->getTranslator()->trans("ColissimoHomeDelivery configuration", [], ColissimoHomeDelivery::DOMAIN_NAME),
+                $this->getTranslator()->trans('ColissimoHomeDelivery configuration', [], ColissimoHomeDelivery::DOMAIN_NAME),
                 $message,
                 $configurationForm,
                 $ex

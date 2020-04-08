@@ -14,27 +14,10 @@
  */
 namespace ColissimoHomeDelivery\Controller;
 
-use ColissimoLabel\Model\ColissimoLabelQuery;
-use ColissimoHomeDelivery\ColissimoHomeDelivery;
-use ColissimoHomeDelivery\Event\LabelEvent;
-use ColissimoHomeDelivery\Model\ColissimowsLabel;
-use ColissimoHomeDelivery\Model\ColissimowsLabelQuery;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 use Thelia\Controller\Admin\BaseAdminController;
-use Thelia\Core\Event\Order\OrderEvent;
 use Thelia\Core\Event\PdfEvent;
 use Thelia\Core\Event\TheliaEvents;
-use Thelia\Core\HttpFoundation\Response;
-use Thelia\Core\Security\AccessManager;
-use Thelia\Core\Security\Resource\AdminResources;
-use Thelia\Exception\TheliaProcessException;
 use Thelia\Log\Tlog;
-use Thelia\Model\ConfigQuery;
-use Thelia\Model\ModuleQuery;
-use Thelia\Model\OrderQuery;
-use Thelia\Model\OrderStatusQuery;
-use Thelia\Tools\URL;
 
 class LabelController extends BaseAdminController
 {
@@ -53,7 +36,7 @@ class LabelController extends BaseAdminController
     public function createCustomsInvoice($orderId, $orderRef)
     {
         $html = $this->renderRaw(
-            "customs-invoice",
+            'customs-invoice',
             array(
                 'order_id' => $orderId
             ),

@@ -41,9 +41,9 @@ class PriceSliceController extends BaseAdminController
         $this->checkXmlHttpRequest();
 
         $responseData = [
-            "success" => false,
-            "message" => '',
-            "slice" => null
+            'success' => false,
+            'message' => '',
+            'slice' => null
         ];
 
         $messages = [];
@@ -154,9 +154,9 @@ class PriceSliceController extends BaseAdminController
         $this->checkXmlHttpRequest();
 
         $responseData = [
-            "success" => false,
-            "message" => '',
-            "slice" => null
+            'success' => false,
+            'message' => '',
+            'slice' => null
         ];
 
         $response = null;
