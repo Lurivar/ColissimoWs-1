@@ -83,7 +83,7 @@
 
                     <div class="row">
                         <!-- checkbox free shipping -->
-                        {assign var="ColissimoHomeDeliveryFreeshipping" value=0}
+                        {assign var="isColissimoHomeDeliveryFreeshipping" value=0}
                         {form  name="colissimo.homedelivery.freeshipping.form"}
                         <form action='{url path="/admin/module/ColissimoHomeDelivery/freeshipping"}' method="post" id="freeshippingform">
                             <div class="col-md-4">
@@ -99,11 +99,11 @@
                                 </div>
                                 {/form_field}
                             </div>
-                            <div class="col-md-6" id="freeshipping-from" {if $isColissimoHomeDeliveryFreeshipping eq 1} style="display:none;" {/if}>
+                            <div class="col-md-6" id="freeshipping-from">
                                 <div class="input-group">
-                                    <span class="input-group-addon">{intl l="Or activate free shipping from (€) :" d="colissimo.home.delivery.bo.default"}</span>
                                     {form_field form=$form field="freeshipping_from"}
                                         {loop type="colissimo.homedelivery.freeshipping" name="freeshipping_colissimo_home_delivery"}
+                                            <span class="input-group-addon {if $FREESHIPPING_FROM}alert-success{/if}">{intl l="Or activate free shipping from (€) :" d="colissimo.home.delivery.bo.default"}</span>
                                             <input type="number" name="{$name}"  class="form-control" value="{$value}" step="0.01">
                                         {/loop}
                                     {/form_field}

@@ -28,6 +28,7 @@ use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryAreaFreeshippingQuery;
 use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshipping;
 use ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshippingQuery;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Thelia\Controller\Admin\BaseAdminController;
 
 use Thelia\Core\Security\Resource\AdminResources;
@@ -62,14 +63,25 @@ class FreeShippingController extends BaseAdminController
             ;
             $isFreeShippingActive->save();
 
-            $response = $this->generateRedirect(URL::getInstance()->absoluteUrl("/admin/module/ColissimoHomeDelivery"));
+            $response = $this->generateRedirectFromRoute(
+                'admin.module.configure',
+                array(),
+                array (
+                    'current_tab'=> 'prices_slices_tab',
+                    'module_code'=> 'ColissimoHomeDelivery',
+                    '_controller' => 'Thelia\\Controller\\Admin\\ModuleController::configureAction',
+                    'price_error_id' => null,
+                    'price_error' => null
+                )
+            );
         } catch (\Exception $e) {
+            $response = JsonResponse::create(array('error' => $e->getMessage()), 500);
         }
         return $response;
     }
 
     /**
-     * @return mixed|\Symfony\Component\HttpFoundation\Response|null
+     * @return mixed|Response|null
      */
     public function setAreaFreeShipping()
     {

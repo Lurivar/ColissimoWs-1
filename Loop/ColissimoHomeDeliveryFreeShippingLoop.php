@@ -37,11 +37,12 @@ class ColissimoHomeDeliveryFreeShippingLoop extends BaseLoop implements PropelSe
 
     public function parseResults(LoopResult $loopResult)
     {
-        /** @var \ColissimoHomeDelivery\Model\ColissimoHomeDeliveryFreeshipping $freeshipping */
+        /** @var ColissimoHomeDeliveryFreeshipping $freeshipping */
         foreach ($loopResult->getResultDataCollection() as $freeshipping) {
             $loopResultRow = new LoopResultRow($freeshipping);
             $loopResultRow
-                ->set("FREESHIPPING_ACTIVE", $freeshipping->getActive());
+                ->set('FREESHIPPING_ACTIVE', $freeshipping->getActive())
+                ->set('FREESHIPPING_FROM', $freeshipping->getFreeshippingFrom());
             $loopResult->addRow($loopResultRow);
         }
         return $loopResult;
