@@ -6,7 +6,7 @@
 
     <loops>
         <loop name="colissimo.homedelivery.price-slices" class="ColissimoHomeDelivery\Loop\PriceSlicesLoop" />
-        <loop name="colissimo.homedelivery.freeshipping" class="ColissimoHomeDelivery\Loop\ColissimoHomeDeliveryFreeshippingLoop" />
+        <loop name="colissimo.homedelivery.freeshipping" class="ColissimoHomeDelivery\Loop\ColissimoHomeDeliveryFreeShippingLoop" />
         <loop name="colissimo.homedelivery.area.freeshipping" class="ColissimoHomeDelivery\Loop\ColissimoHomeDeliveryAreaFreeshippingLoop" />
     </loops>
 
