@@ -193,9 +193,11 @@ class ColissimoHomeDelivery extends AbstractDeliveryModule
         }
 
         /** If a min price for areaFreeshipping is defined and the cart amount reaches this value, return 0 (aka free shipping) */
-        if (null !== $areaFreeshipping->getCartAmount() && $areaFreeshipping->getCartAmount() <= $cartAmount) {
-            $postage = 0;
-            return $postage;
+        if ($areaFreeshipping) {
+            if (null !== $areaFreeshipping->getCartAmount() && $areaFreeshipping->getCartAmount() <= $cartAmount) {
+                $postage = 0;
+                return $postage;
+            }
         }
 
         $postage = $firstPrice->getShipping();
