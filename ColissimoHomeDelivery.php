@@ -287,4 +287,9 @@ class ColissimoHomeDelivery extends AbstractDeliveryModule
     {
         return ModuleQuery::create()->findOneByCode('ColissimoHomeDelivery')->getId();
     }
+
+    public function getDeliveryMode()
+    {
+        return "delivery";
+    }
 }

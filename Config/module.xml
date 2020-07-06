@@ -16,15 +16,8 @@
     <version>1.0.0</version>
     <authors>
         <author>
-            <name>Franck Allimant</name>
-            <company>CQFDev</company>
-            <email>thelia@cqfdev.fr</email>
-            <website>www.cqfdev.fr</website>
-        </author>
-        <author>
-            <name>Luc Normandon</name>
-            <company>OpenStudio</company>
-            <email>lucnormandon@openstudio.fr</email>
+            <name>Thelia</name>
+            <email>info@thelia.net</email>
         </author>
     </authors>
     <type>delivery</type>

@@ -14,7 +14,7 @@ Adds a delivery system for Colissimo Domicile delivery, with or without signatur
 Add it in your main thelia composer.json file
 
 ```
-composer require thelia/colissimo-ws-module:~2.0.0
+composer require thelia/colissimo-home-delivery-module:~1.0.0
 ```
 
 ## Usage
@@ -28,6 +28,38 @@ for a minimum price, minimum price by area, or for everyone.
 ## Loop
 
 If your module declare one or more loop, describe them here like this :
+
+[colissimo.homedelivery.price-slices]
+
+### Input arguments
+
+|Argument |Description |
+|---      |--- |
+|**area_id** | Mandatory. The ID of an area served by your module |
+
+### Output arguments
+
+|Variable   |Description |
+|---        |--- |
+|$SLICE_ID    | The price slice ID |
+|$MAX_WEIGHT    | The max weight for this price slice |
+|$MAX_PRICE    | The max cart price for this price slice |
+|$SHIPPING    | The shipping cost for this price slice |
+
+[colissimo.homedelivery.freeshipping]
+
+### Input arguments
+
+|Argument |Description |
+|---      |--- |
+|**id** | The entry ID in the table. It should always be 1 |
+
+### Output arguments
+
+|Variable   |Description |
+|---        |--- |
+|$FREESHIPPING_ACTIVE | (bool) Whether the global freeshipping without restrictions is activated or not |
+|$FREESHIPPING_FROM | The minimum cart amount to have a global freeshipping |
 
 [colissimo.homedelivery.area.freeshipping]
 
@@ -43,36 +75,6 @@ If your module declare one or more loop, describe them here like this :
 |---        |--- |
 |$ID    | The entry ID in the table |
 |$AREA_ID    | The area ID |
-|$CART_AMOUNT    | The cart amount necessary to benefit from free delivery |
+|$CART_AMOUNT    | The cart amount necessary to benefit from free delivery for this area |
 
-[colissimo.homedelivery.freeshipping]
-
-### Input arguments
-
-|Argument |Description |
-|---      |--- |
-|**id** | The entry ID in the table. It should always be 1 |
-
-### Output arguments
-
-|Variable   |Description |
-|---        |--- |
-|$FREESHIPPING_ACTIVE | (bool) Whether the global freeshipping is activated or not |
-
-[colissimo.homedelivery.price-slices]
-
-### Input arguments
-
-|Argument |Description |
-|---      |--- |
-|**area_id** | The ID of an area served by your module |
-
-### Output arguments
-
-|Variable   |Description |
-|---        |--- |
-|$SLICE_ID    | The price slice ID |
-|$MAX_WEIGHT    | The max weight for this price slice |
-|$MAX_PRICE    | The max cart price for this price slice |
-|$SHIPPING    | The shipping cost for this price slice |
 
